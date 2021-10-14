@@ -1,2 +1,2 @@
-# DFS_Puzzle
-Algortimo DFS para la solucion de un puzzle
+# Metodos de Busqueda Informada y No Informada
+Serie de ejercicios que emplean metodos de busqueda en python
