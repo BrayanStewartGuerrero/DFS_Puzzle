@@ -1,6 +1,6 @@
 from simpleai.search import SearchProblem, astar
 
-#Busqueda en Profundidad
+#Ejercicio del puzzle de ocho piezas resuelto por el metodo de busqueda A*
 
 GOAL = '''1-2-3
 4-5-6
