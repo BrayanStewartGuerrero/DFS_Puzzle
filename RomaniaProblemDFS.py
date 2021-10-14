@@ -106,15 +106,17 @@ def DeepFirstSearch(gp,index):
             print('Chld Node: ',child.state)
             if child.state not in explored and child not in frontier:
                 frontier.append(child)
-                
+
+        print('===================================')     
 
     return None
 
                 
 
-gp=graphProblem('Arad','Lugoj',graph)
+gp=graphProblem('Arad','Oradea',graph)
 
 print ( " Result of DFS " )
 print('===================================')
 node=DeepFirstSearch(gp,-1)
+print('===================================')
 print('Path Cost to the Goal: ', node.path_cost)
