@@ -83,7 +83,7 @@ class Node:
     def expand(self,gp):
         return [self.childNode(gp,action) for action in gp.actions(self.state)]
         
-#Metodo de Busqueda no Informada Deep First Search
+#Metodo de Busqueda no Informada Depth First Search
 def DeepFirstSearch(gp,index):
     frontier=[]
     initialNode=Node(gp.initial)
