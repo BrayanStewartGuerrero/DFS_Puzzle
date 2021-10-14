@@ -29,7 +29,7 @@ rows_goal = string_to_list(GOAL)
 for number in '12345678e':
     goal_positions[number] = find_location(rows_goal, number)
 
-class EigthPuzzleProblem(SearchProblem):
+class ProblemaPuzzle(SearchProblem):
     def actions(self, state):
         #Retorna una lista de las piezas que podemos mover a un espacio vacio
         rows = string_to_list(state)
@@ -50,13 +50,10 @@ class EigthPuzzleProblem(SearchProblem):
     def result(self, state, action):
         #Retorna el estado resultante despues de mover una ficha a un espacio vacio
         #La accion parameter contiene la pieza a mover
-
         rows = string_to_list(state)
         row_e, col_e = find_location(rows, 'e')
         row_n, col_n = find_location(rows, action)
-
         rows[row_e][col_e], rows[row_n][col_n] = rows[row_n][col_n], rows[row_e][col_e]
-
         return list_to_string(rows)
 
     def is_goal(self, state):
@@ -65,9 +62,7 @@ class EigthPuzzleProblem(SearchProblem):
 
     def heuristic(self, state):
         #Retorna una estimacion de la distancia al estado deseado usando la distancia manhatan
-
         rows = string_to_list(state)
-
         distance = 0
 
         for number in '12345678e':
@@ -78,7 +73,7 @@ class EigthPuzzleProblem(SearchProblem):
 
         return distance
 
-result = astar(EigthPuzzleProblem(INITIAL))
+result = astar(ProblemaPuzzle(INITIAL))
 
 for action, state in result.path():
     print('Mover el numero', action)
