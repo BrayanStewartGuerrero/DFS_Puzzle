@@ -1,5 +1,5 @@
 #Grafo del mapa de Romania 
-graph = {
+grafo = {
     "Arad": {"Timisoara": 118, "Sibiu": 140,"Zerind": 75},
     "Zerind": {"Arad": 75, "Oradea": 71},
     "Oradea": {"Zerind": 71, "Sibiu": 151},
@@ -24,7 +24,7 @@ graph = {
 
 
 #Clase problema del grafo
-class graphProblem:
+class problemaGrafoRumania:
 
     def __init__(self,initial,goal,graph):
         self.initial=initial
@@ -32,7 +32,7 @@ class graphProblem:
         self.graph=graph
 
     def actions(self,state):
-        return list(graph[state].keys())
+        return list(grafo[state].keys())
 
     def result(self,state,action):
         return action
@@ -41,7 +41,7 @@ class graphProblem:
         return state == self.goal
 
     def pathCost(self,cost_so_far, fromState,action,toState):
-        return cost_so_far + graph[fromState][toState]
+        return cost_so_far + grafo[fromState][toState]
 
 #Clase nodo
 class Node:
@@ -90,12 +90,12 @@ def DeepFirstSearch(gp,index, recorrido):
 
                 
 
-gp=graphProblem('Arad','Bucharest',graph)
+gp=problemaGrafoRumania('Arad','Bucharest',grafo)
 
 recorrido=[]
 print ( " Resultados del DFS " )
 print('===================================')
 node=DeepFirstSearch(gp,-1,recorrido)
 print('===================================')
-print('Recorrido:', (','.join(recorrido)))
+print('Recorrido:', (', '.join(recorrido)))
 print('Costo del Recorrido: ', node.path_cost)
