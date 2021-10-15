@@ -23,29 +23,6 @@ graph = {
 }
 
 
-heuristicSLD={
-    "Arad": 366,
-    "Bucharest": 0,
-    "Craiova": 160,
-    "Dobreta": 242,
-    "Eforie": 161,
-    "Fagaras": 176,
-    "Giurgiu": 77,
-    "Hirsova": 151,
-    "Iasi": 226,
-    "Lugoj": 244,
-    "Mehadia": 241,
-    "Neamt": 234,
-    "Oradea": 380,
-    "Pitesi": 100,
-    "RimnicuVilcea": 193,
-    "Sibiu": 253,
-    "Timisoara": 329,
-    "Urziceni": 80,
-    "Vaslui": 199,
-    "Zerind": 374  
-    }
-
 #Clase problema del grafo
 class graphProblem:
 
@@ -84,19 +61,19 @@ class Node:
         return [self.childNode(gp,action) for action in gp.actions(self.state)]
         
 #Metodo de Busqueda no Informada Depth First Search
-def DeepFirstSearch(gp,index):
+def DeepFirstSearch(gp,index, recorrido):
     frontier=[]
     initialNode=Node(gp.initial)
     frontier.append(initialNode)
     explored=set()
 
     while frontier:
-        print('Frontier: ')
-        print([node.state for node in frontier])
+        print('Frontier: ', [node.state for node in frontier])
         if len(frontier) == 0 : return 'Failure'
   
         node= frontier.pop(index)
         print('Pop : ', node.state)
+        recorrido.append(node.state)
         
         if gp.goalTest(node.state): return node
 
@@ -107,16 +84,18 @@ def DeepFirstSearch(gp,index):
             if child.state not in explored and child not in frontier:
                 frontier.append(child)
 
-        print('===================================')     
+        print('===================================')
 
     return None
 
                 
 
-gp=graphProblem('Arad','Oradea',graph)
+gp=graphProblem('Arad','Bucharest',graph)
 
-print ( " Result of DFS " )
+recorrido=[]
+print ( " Resultados del DFS " )
 print('===================================')
-node=DeepFirstSearch(gp,-1)
+node=DeepFirstSearch(gp,-1,recorrido)
 print('===================================')
-print('Path Cost to the Goal: ', node.path_cost)
+print('Recorrido:', (','.join(recorrido)))
+print('Costo del Recorrido: ', node.path_cost)
